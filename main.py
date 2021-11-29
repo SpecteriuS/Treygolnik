@@ -1,21 +1,19 @@
-a=[]
-for i in range(1,51):
-    a.append(i)
-print(a)
-a.sort(reverse=True)
-smax=0
-for x in range(0,48):
-    if a[x]+a[x+1] > a[x+2] and a[x]< a[x+1]+a[x+2] and -a[x]+a[x+1] < a[x+2]:
-        q=(a[x]+a[x+1]+a[x+2])/2
-        s=(q*(q-a[x])*(q-a[x+1])*(q-a[x+2]))**0.5
-    if s > smax:
-        smax=s
-        b1=a[x]
-        b2=a[x+1]
-        b3=a[x+2]
-    break
-if smax==0:
-    print("Er")
-else:
-    print(smax)
-    print(b1,b2,b3)
+lst = []
+for i in range(50):
+    lst.append(i+1)
+
+lst.sort(reverse=True)
+first = lst[0]
+second = lst[1]
+s = 0
+p = 0
+maximal = []
+for i in range(2, len(lst)):
+    if second + lst[i] > first and first + second > lst[i] and first + lst[i] > second:
+        p = (first + second + lst[i]) / 2
+        s = (p*(p-first)*(p-second)*(p-lst[i])) ** 0.5
+        maximal = [first, second, lst[i]]
+        break
+
+print("Максимальная площадь - ", s)
+print("Стороны при максимальной площади - ", maximal)
